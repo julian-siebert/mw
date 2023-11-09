@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" shutdownHook="disable">
+    <Appenders>
+        <Console name="ConsoleDebug" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss]}[%style{%p}{cyan}][%style{%c{1}}{yellow}] %highlight{%m%n}{FATAL=black, ERROR=red, WARN=yellow, INFO=white, DEBUG=white, TRACE=white}"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+
+        <Root level="TRACE">
+            <AppenderRef ref="ConsoleDebug"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -7,7 +7,10 @@ import programm.items.Book;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -59,6 +62,10 @@ public final class BooksTablePanel extends EditorPanel {
 
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, gbc);
+
+        gbc.gridy++;
+
+        add(new BookAdderPanel(parent), gbc);
         return this;
     }
 }

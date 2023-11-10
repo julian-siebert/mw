@@ -3,7 +3,7 @@ package programm.editor.overview;
 import programm.editor.Editor;
 import programm.editor.EditorFrame;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 
 public final class OverviewFrame extends EditorFrame {
 

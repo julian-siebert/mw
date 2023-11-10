@@ -1,6 +1,6 @@
 package programm.editor.overview;
 
-import programm.Library;
+import it.unimi.dsi.fastutil.objects.ObjectCollection;
 import programm.editor.EditorFrame;
 import programm.editor.EditorPanel;
 import programm.editor.authors.AuthorFrame;
@@ -9,10 +9,11 @@ import programm.importer.BookImport;
 import programm.importer.BookImporter;
 import programm.items.Book;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.io.File;
-import java.util.List;
 
 public final class OverviewFooterPanel extends EditorPanel {
 
@@ -45,7 +46,7 @@ public final class OverviewFooterPanel extends EditorPanel {
                 File file = fileChooser.getSelectedFile();
                 if (file == null) return;
                 try {
-                    List<BookImport> imports = BookImporter.readCsv(file.getPath());
+                    ObjectCollection<BookImport> imports = BookImporter.readCsv(file.getPath());
                     for (BookImport bookImport : imports) {
                         Book.byImport(this.editor.library(), bookImport);
                     }

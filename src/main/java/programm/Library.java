@@ -1,5 +1,7 @@
 package programm;
 
+import it.unimi.dsi.fastutil.objects.ObjectArraySet;
+import it.unimi.dsi.fastutil.objects.ObjectSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import programm.store.Database;
@@ -10,24 +12,22 @@ import programm.items.Book;
 import javax.swing.UIManager;
 import java.awt.EventQueue;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class Library {
     private static final Logger logger = LoggerFactory.getLogger("Library");
     private static Library instance;
 
-    private final Set<Book> books;
-    private final Set<Author> authors;
+    private final ObjectSet<Book> books;
+    private final ObjectSet<Author> authors;
     private final Database database;
     private final Editor editor;
 
     public Library(String databasePath) {
         instance = this;
-        this.books = new HashSet<>();
-        this.authors = new HashSet<>();
+        this.books = new ObjectArraySet<>();
+        this.authors = new ObjectArraySet<>();
         this.database = Database.sqLite("jdbc:sqlite:" + databasePath);
         this.editor = new Editor(this);
     }
@@ -127,11 +127,11 @@ public final class Library {
         this.database.close();
     }
 
-    public Set<Book> getBooks() {
+    public ObjectSet<Book> getBooks() {
         return books;
     }
 
-    public Set<Author> getAuthors() {
+    public ObjectSet<Author> getAuthors() {
         return authors;
     }
 

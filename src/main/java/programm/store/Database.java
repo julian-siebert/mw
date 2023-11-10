@@ -1,5 +1,7 @@
 package programm.store;
 
+import it.unimi.dsi.fastutil.objects.ObjectArraySet;
+import it.unimi.dsi.fastutil.objects.ObjectSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import programm.items.Author;
@@ -10,8 +12,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashSet;
-import java.util.Set;
 
 public final class Database implements Closeable {
     private static final Logger logger = LoggerFactory.getLogger("Database");
@@ -24,10 +24,10 @@ public final class Database implements Closeable {
         this.connection = connection;
     }
 
-    public Set<Book> getBooks() throws RuntimeException {
+    public ObjectSet<Book> getBooks() throws RuntimeException {
         String sql = "SELECT * FROM books;";
 
-        Set<Book> books = new HashSet<>();
+        ObjectSet<Book> books = new ObjectArraySet<>();
 
         synchronized (sec) {
             try {
@@ -50,10 +50,10 @@ public final class Database implements Closeable {
         }
     }
 
-    public Set<Author> getAuthors() throws RuntimeException {
+    public ObjectSet<Author> getAuthors() throws RuntimeException {
         String sql = "SELECT * FROM authors;";
 
-        Set<Author> authors = new HashSet<>();
+        ObjectSet<Author> authors = new ObjectArraySet<>();
         synchronized (sec) {
             try {
                 PreparedStatement statement = this.connection.prepareStatement(sql);
